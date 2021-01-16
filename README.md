@@ -1,2 +1,2 @@
 # NativeTurkish
- NativeTurkishApp
+ Client side of NativeTurkish
