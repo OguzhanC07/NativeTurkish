@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using NativeTurkish.Web.ApiServices.Concrete;
+using NativeTurkish.Web.ApiServices.Interfaces;
 
 namespace NativeTurkish.Web
 {
@@ -17,8 +20,11 @@ namespace NativeTurkish.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
             services.AddHttpContextAccessor();
             services.AddSession();
+
+            services.AddHttpClient<IAuthService, AuthManager>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -30,13 +36,15 @@ namespace NativeTurkish.Web
             }
 
             app.UseRouting();
+
             app.UseSession();
             app.UseStaticFiles();
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(name: default, pattern: "{controller=Home}/{action=Index}");
                 endpoints.MapControllerRoute(name: "areas", pattern: "{area}/{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapControllerRoute(name: default, pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

@@ -4,4 +4,33 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Areas\qwe\**" />
+    <Content Remove="Areas\qwe\**" />
+    <EmbeddedResource Remove="Areas\qwe\**" />
+    <None Remove="Areas\qwe\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\admin\dist\assets\demo\chart-area-demo.js" />
+    <None Include="wwwroot\admin\dist\assets\demo\chart-bar-demo.js" />
+    <None Include="wwwroot\admin\dist\assets\demo\chart-pie-demo.js" />
+    <None Include="wwwroot\admin\dist\assets\demo\datatables-demo.js" />
+    <None Include="wwwroot\admin\dist\assets\img\error-404-monochrome.svg" />
+    <None Include="wwwroot\admin\dist\js\scripts.js" />
+    <None Include="wwwroot\lib\jquery-validate\jquery.validate.min.js" />
+    <None Include="wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.min.js" />
+    <None Include="wwwroot\lib\jquery\jquery.min.js" />
+    <None Include="wwwroot\lib\jquery\jquery.min.map" />
+    <None Include="wwwroot\lib\jquery\jquery.slim.min.js" />
+    <None Include="wwwroot\lib\popper\popper.min.js" />
+    <None Include="wwwroot\lib\twitter-bootstrap\js\bootstrap.bundle.min.js" />
+    <None Include="wwwroot\lib\twitter-bootstrap\js\bootstrap.min.js" />
+    <None Include="wwwroot\lib\twitter-bootstrap\js\popper.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
+
 </Project>

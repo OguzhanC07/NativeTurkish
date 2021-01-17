@@ -1,1 +1,103 @@
-<p>I will be very big site soon</p>
+@model RegisterLoginModel
+
+@section Styles{
+    <link rel="stylesheet" type="text/css" href="/css/login.css">
+}
+
+<section class="user" style="background-image: url('/img/background.png');">
+    <div class="user_options-container">
+        <div class="user_options-text">
+            <div class="user_options-unregistered">
+                <h2 class="user_unregistered-title">Üye Değil Misin ? </h2>
+                <p class="user_unregistered-text">Türkçe öğrenmek ve insanlarla iletişim kurmak için üye olmalısın !
+                    Aşşağıdaki butona tıklayarak üye olmaya başla.</p>
+                <button class="user_unregistered-signup" id="signup-button">Kayıt Ol</button>
+            </div>
+
+            <div class="user_options-registered">
+                <h2 class="user_registered-title">Bir Hesabın var mı ? </h2>
+                <p class="user_registered-text">Türkçe öğrenmek ve insanlarla iletişim kurmak için giriş yapmalısın !
+                    Aşşağıdaki butona tıklayarak giriş yapabilirsin.</p>
+                <button class="user_registered-login" id="login-button">Giriş Yap</button>
+            </div>
+        </div>
+
+        <div class="user_options-forms" id="user_options-forms">
+            <div class="user_forms-login">
+                <h2 class="forms_title">Giriş Yap</h2>
+                <form class="forms_form" method="POST">
+                    <fieldset class="forms_fieldset">
+                        <div class="forms_field">
+                            <span class="text-danger" asp-validation-for="@Model.AppUserLoginModel.Email"></span>
+                            <input type="email" required class="forms_field-input" asp-for="@Model.AppUserLoginModel.Email" placeholder="E-Posta">
+                        </div>
+                        <div class="forms_field">
+                            <span class="text-danger" asp-validation-for="@Model.AppUserLoginModel.Password"></span>
+                            <input type="password" placeholder="Şifren" class="forms_field-input" required asp-for="@Model.AppUserLoginModel.Password" />
+                        </div>
+                    </fieldset>
+                    <div class="forms_buttons">
+                        <button type="button" class="forms_buttons-forgot">Şifreni mi unuttun ?</button>
+                        <input type="submit" value="Giriş Yap" class="forms_buttons-action" asp-action="LogIn" asp-controller="Home">
+                    </div>
+                </form>
+                @{
+                    if (TempData["LoginError"] != null)
+                    {
+                        <div class="text-danger">
+                            Kullanıcı adı veya şifre hatalı
+                        </div>
+                    }
+                }
+            </div>
+            <div class="user_forms-signup">
+                <h2 class="forms_title">ÜYE OLUN</h2>
+                <form class="forms_form" method="post">
+                    <fieldset class="forms_fieldset">
+                        <div class="forms_field">
+                            <input type="text" placeholder="Adınız" class="forms_field-input" asp-for="@Model.AppUserRegisterModel.Name" required />
+                        </div>
+                        <div class="forms_field">
+                            <input type="email" placeholder="Email" asp-for="@Model.AppUserRegisterModel.Email" class="forms_field-input" required />
+                        </div>
+                        <div class="forms_field">
+                            <input type="password" placeholder="Şifreniz" asp-for="@Model.AppUserRegisterModel.Password" class="forms_field-input" required />
+                        </div>
+                    </fieldset>
+                    <div class="forms_buttons">
+                        <input type="submit" value="Kayıt Ol" class="forms_buttons-action" asp-action="SignUp" asp-controller="Home">
+                    </div>
+                </form>
+                @{
+                    if (TempData["RegisterError"] != null)
+                    {
+                        <div class="text-danger">
+                            Sistemde bu e-posta'yı kullanan kullanıcı vardır.
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+
+@section Javascript{
+<script>
+    var signupButton = document.getElementById('signup-button'),
+    loginButton = document.getElementById('login-button'),
+    userForms = document.getElementById('user_options-forms')
+
+
+    signupButton.addEventListener('click', () => {
+    userForms.classList.remove('bounceRight')
+    userForms.classList.add('bounceLeft')
+    }, false)
+
+
+    loginButton.addEventListener('click', () => {
+    userForms.classList.remove('bounceLeft')
+    userForms.classList.add('bounceRight')
+}, false)
+</script>
+}
