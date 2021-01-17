@@ -26,6 +26,7 @@ namespace NativeTurkish.Web
 
             services.AddHttpClient<IAuthService, AuthManager>();
             services.AddHttpClient<IUserService, UserManager>();
+            services.AddHttpClient<IQuestionService, QuestionManager>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,0 +1,70 @@
+﻿@model QuestionAddModel
+
+@section Styles{
+    <style>
+        ul {
+            list-style-type: none;
+        }
+    </style>
+}
+
+<form method="post" asp-action="AddQuestion" class="px-5 my-3 w-75 ms-auto">
+    <div class="form-group">
+        <span asp-validation-for="@Model.description"></span>
+        <textarea class="form-control" placeholder="Soru Açıklaması" type="" asp-for="@Model.description"></textarea>
+    </div>
+    @{
+        for (int i = 0; i < 4; i++)
+        {
+            <div class="row">
+                <div class="col-md-8 col-lg-8 col-sm-10 mt-2">
+                    <span asp-validation-for="@Model.alternatives[i].answer"></span>
+                    <input class="form-control" placeholder="Şık" type="text" asp-for="@Model.alternatives[i].answer" />
+                </div>
+                <div class="col-md-4 col-lg-4 col-sm-2 mt-3">
+                    <input asp-for="@Model.alternatives[i].isCorrect" class="form-check-input" type="checkbox">
+                    <label asp-for="@Model.alternatives[i].isCorrect" class="form-check-label">Doğru cevap</label>
+                </div>
+            </div>
+        }
+    }
+    <div class="form-group mt-3">
+        <select required id="levels" onchange="GetSelectedTextValue(this)">
+            <option value="0">Lütfen Bir Seviye Seçiniz</option>
+        </select>
+    </div>
+    <input type="hidden" asp-for="@Model.level" />
+    <div class="form-group">
+        <button type="submit" class="btn btn-sm btn-info">Kaydet</button>
+    </div>
+    <div asp-validation-summary="All">
+
+    </div>
+</form>
+
+
+@section Javascript{
+    <script>
+        $('input[type="checkbox"]').on('change', function () {
+            $('input[type="checkbox"]').not(this).prop('checked', false);
+        });
+    </script>
+    <script>
+        var select = document.getElementById("levels");
+        var options = ["A1", "A2", "B1", "B2"];
+        for (var i = 0; i < options.length; i++) {
+            var opt = options[i];
+            var el = document.createElement("option");
+            el.textContent = opt;
+            el.value = opt;
+            select.appendChild(el);
+        }
+    </script>
+
+    <script>
+        function GetSelectedTextValue(sel) {
+            var value = sel.options[sel.selectedIndex].text;
+            document.getElementById('level').value = value;
+        }
+    </script>
+}
