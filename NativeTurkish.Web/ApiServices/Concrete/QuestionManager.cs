@@ -83,5 +83,26 @@ namespace NativeTurkish.Web.ApiServices.Concrete
 
             var responseMessage = await _httpClient.DeleteAsync($"{id}");
         }
+
+
+        public async Task<QuestionListModel> GetQuestionByLevel(string level)
+        {
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _accessor.HttpContext.Session.GetString("token"));
+            var userId = _accessor.HttpContext.Session.GetString("id");
+
+            var responseMessage = await _httpClient.GetAsync($"quizQuestion?level={level}&userId={userId}");
+
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                return JsonConvert.DeserializeObject<QuestionListModel>(await responseMessage.Content.ReadAsStringAsync());
+            }
+            else
+            {
+                return null;
+            }
+
+
+
+        }
     }
 }

@@ -1,0 +1,150 @@
+     :root {
+    background-color: #ecf5ff;
+    font-size: 62.5%;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #333;
+  }
+
+  *:focus {
+    outline:0;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+  
+  h1 {
+    font-size: 5.4rem;
+    color: #52bab3;
+    margin-bottom: 3rem;
+  }
+  
+  h1 > span {
+    font-size: 2.4rem;
+    font-weight: 500;
+  }
+  
+  h2 {
+    font-size: 4.2rem;
+    margin-bottom: 4rem;
+    font-weight: 700;
+  }
+  
+  h3 {
+    font-size: 2.8rem;
+    font-weight: 500;
+  }
+  
+ 
+  
+  .container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 280px;
+    max-width: 60%;
+    margin: 0 auto;
+  }
+  
+  .container > * {
+    width: 100%;
+  }
+  
+  .flex-column {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .flex-center {
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .justify-center {
+    justify-content: center;
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  
+  .hidden {
+    display: none;
+  }
+
+  .explanation {
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-bottom: 2rem;
+    padding: 0 1rem;
+    text-align: center;
+    line-height: 1.8rem;
+  }
+  
+  .firstcontainer {
+    margin-top: 3rem;
+  }
+
+
+  .btn {
+    font-size: 1.8rem;
+    padding: 1rem 0;
+    width: 20rem;
+    text-align: center;
+    border: 0.1rem solid #52bab3;
+    margin-bottom: 1rem;
+    text-decoration: none;
+    color: #52bab3;
+    background-color: white;
+  }
+  
+  .btn:hover {
+    cursor: pointer;
+    box-shadow: 0 0.4rem 1.4rem 0 rgb(82, 186, 179);
+    transform: translateY(-0.1rem);
+    transition: transform 150ms;
+  }
+  
+  .btn[disabled]:hover {
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+  }
+  
+  select {
+    appearance: none;
+    text-align-last:center;
+    text-align: center;
+    border: none;
+  }
+option {
+  appearance: none;
+  -webkit-appearance: none;
+  font-size: 16px;
+  color: #52bab3;
+  padding: 3px;
+}
+
+  @media only screen and (max-width: 360px) {
+    h1 {
+        font-size: 4rem;
+        white-space: nowrap;
+      }
+  }
+  @media only screen and (max-width: 900px) {
+    .container {
+      max-width: 80%;
+    }
+  }

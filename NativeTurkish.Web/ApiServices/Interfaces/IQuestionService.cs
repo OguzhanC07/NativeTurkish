@@ -13,6 +13,7 @@ namespace NativeTurkish.Web.ApiServices.Interfaces
         Task AddAsync(QuestionAddModel model);
         Task UpdateAsync(QuestionListModel model);
         Task DeleteAsync(string id);
+        Task<QuestionListModel> GetQuestionByLevel(string level);
 
     }
 }
