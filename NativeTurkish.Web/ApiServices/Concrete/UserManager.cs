@@ -19,7 +19,7 @@ namespace NativeTurkish.Web.ApiServices.Concrete
         public UserManager(HttpClient httpClient, IHttpContextAccessor accessor)
         {
             _httpClient = httpClient;
-            _httpClient.BaseAddress = new System.Uri("http://localhost:3000/api/v1/users/");
+            _httpClient.BaseAddress = new Uri("http://localhost:3000/api/v1/users/");
             _accessor = accessor;
         }
         public async Task<List<UserListModel>> GetAllUsersAsync()
@@ -36,5 +36,13 @@ namespace NativeTurkish.Web.ApiServices.Concrete
                 return null;
             }
         }
+
+        public async Task DeleteUserAsync(string id)
+        {
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _accessor.HttpContext.Session.GetString("token"));
+
+            var responseMessage = await _httpClient.DeleteAsync($"{id}");
+        }
+
     }
 }

@@ -27,7 +27,7 @@
 
 <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-        <a class="navbar-brand" asp-action="Index" asp-controller="Home">Factory</a>
+        <a class="navbar-brand" asp-action="Index" asp-controller="Home">Native Turkish</a>
         <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i
                 class="fas fa-bars"></i></button>
         <!-- Navbar Search-->
@@ -46,7 +46,7 @@
                 <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                    <a class="dropdown-item">@HttpContextAccessor.HttpContext.Session.GetString("userName")</a>
+                    <a class="dropdown-item">@HttpContextAccessor.HttpContext.Session.GetString("name")</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" asp-area="Admin" asp-controller="Profile" asp-action="Index">Profili
                         Görüntüle</a>
@@ -77,10 +77,10 @@
                         <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
                             data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" asp-controller="Product" asp-area="Admin"
+                                <a class="nav-link" asp-controller="Question" asp-area="Admin"
                                     asp-action="Index">Soruları Görüntüle</a>
-                                <a class="nav-link" asp-controller="Product" asp-area="Admin"
-                                    asp-action="AddProduct">Soru Ekle</a>
+                                <a class="nav-link" asp-controller="Question" asp-area="Admin"
+                                    asp-action="AddQuestion">Soru Ekle</a>
                             </nav>
                         </div>
                         <div class="sb-sidenav-menu-heading">Kullanıcı İşlemleri</div>
@@ -93,19 +93,16 @@
                         <div class="collapse" id="collapseDealers" aria-labelledby="headingOne"
                             data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" asp-area="Admin" asp-controller="Dealer"
+                                <a class="nav-link" asp-area="Admin" asp-controller="User"
                                     asp-action="Index">Kullanıcıları
                                     Görüntüle</a>
-                                <a class="nav-link" asp-area="Admin" asp-controller="Dealer"
-                                    asp-action="AddDealer">Kullanıcı
-                                    Ekle</a>
                             </nav>
                         </div>
                     </div>
                 </div>
                 <div class="sb-sidenav-footer">
                     <div class="small">Giriş Yapan Kişi</div>
-                    @* @HttpContextAccessor.HttpContext.Session.GetString("userName") *@ Test
+                    @HttpContextAccessor.HttpContext.Session.GetString("name") 
                 </div>
             </nav>
         </div>

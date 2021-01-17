@@ -9,5 +9,6 @@ namespace NativeTurkish.Web.ApiServices.Interfaces
     public interface IUserService
     {
         Task<List<UserListModel>> GetAllUsersAsync();
+        Task DeleteUserAsync(string id);
     }
 }

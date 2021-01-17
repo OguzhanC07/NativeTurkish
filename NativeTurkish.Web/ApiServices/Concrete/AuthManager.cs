@@ -34,6 +34,7 @@ namespace NativeTurkish.Web.ApiServices.Concrete
                 var tokenAndRole = JsonConvert.DeserializeObject<LoginCredentials>(await responseMessage.Content.ReadAsStringAsync());
                 _accessor.HttpContext.Session.SetString("token", tokenAndRole.Token);
                 _accessor.HttpContext.Session.SetString("id", tokenAndRole.Id.ToString());
+                _accessor.HttpContext.Session.SetString("name", tokenAndRole.Name);
                 _accessor.HttpContext.Session.SetString("role", tokenAndRole.Role);
                 _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", tokenAndRole.Token);
 

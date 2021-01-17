@@ -17,6 +17,8 @@ namespace NativeTurkish.Web.Areas.Admin.Controllers
         {
             _userService = userService;
         }
+
+
         public async  Task<IActionResult> Index()
         {
             var data = await _userService.GetAllUsersAsync();
@@ -28,6 +30,12 @@ namespace NativeTurkish.Web.Areas.Admin.Controllers
             {
                 return View(data);
             }
+        }
+
+        public async Task<IActionResult> DeleteUser(string id)
+        {
+            await _userService.DeleteUserAsync(id);
+            return RedirectToAction("Index", "User");
         }
     }
 }
