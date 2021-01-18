@@ -1,0 +1,101 @@
+﻿@page
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+
+@*
+    <div class="container">
+        <div class="row">&nbsp;</div>
+        <div class="row">
+            <div class="col-2">User</div>
+            <div class="col-4"><input type="hidden" id="userInput" value="@HttpContextAccessor.HttpContext.Session.GetString("name")" /></div>
+        </div>
+        <div class="row">
+            <div class="col-2">Message</div>
+            <div class="col-4"><input type="text" id="messageInput" /></div>
+        </div>
+        <div class="row">&nbsp;</div>
+        <div class="row">
+            <div class="col-6">
+                <input type="button" id="sendButton" value="Send Message" />
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <hr />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <ul id="messagesList"></ul>
+        </div>
+    </div>
+
+
+*@
+
+@section Styles{
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="~/css/chat.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" rel="stylesheet" />
+}
+
+<div class="container">
+    <h3 class=" text-center">Messaging</h3>
+    <div class="messaging">
+        <div class="inbox_msg">
+            <div class="mesgs">
+                <div class="msg_history">
+                    <div class="incoming_msg">
+                        <div class="container">
+                            <div class="row">&nbsp;</div>
+                            <div class="row">
+                                <div class="col-4"><input type="hidden" id="userInput" value="@HttpContextAccessor.HttpContext.Session.GetString("name")" /></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-2">Message</div>
+                                <div class="col-4"><input type="text" id="messageInput" /></div>
+                            </div>
+                            <div class="row">&nbsp;</div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <input type="button" id="sendButton" value="Send Message" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <hr />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <ul id="messagesList"></ul>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @section JavaScript{
+        <script src="~/lib/signalr/dist/browser/signalr.js"></script>
+        <script src="~/js/chat.js"></script>
+    }
+
+
+
+    @*<div class="outgoing_msg">
+            <div class="sent_msg">
+                <p>
+                    Test which is a new approach to have all
+                    solutions
+                </p>
+                <span class="time_date"> 11:01 AM    |    June 9</span>
+            </div>
+        </div>*@

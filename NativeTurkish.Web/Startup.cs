@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NativeTurkish.Web.ApiServices.Concrete;
 using NativeTurkish.Web.ApiServices.Interfaces;
+using NativeTurkish.Web.Hubs;
 
 namespace NativeTurkish.Web
 {
@@ -23,6 +24,7 @@ namespace NativeTurkish.Web
 
             services.AddHttpContextAccessor();
             services.AddSession();
+            services.AddSignalR();
 
             services.AddHttpClient<IAuthService, AuthManager>();
             services.AddHttpClient<IUserService, UserManager>();
@@ -45,7 +47,7 @@ namespace NativeTurkish.Web
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(name: "areas", pattern: "{area}/{controller=Home}/{action=Index}/{id?}");
-
+                endpoints.MapHub<ChatHub>("/chathub");
                 endpoints.MapControllerRoute(name: default, pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }

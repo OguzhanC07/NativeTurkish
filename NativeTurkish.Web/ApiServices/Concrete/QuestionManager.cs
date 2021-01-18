@@ -85,12 +85,12 @@ namespace NativeTurkish.Web.ApiServices.Concrete
         }
 
 
-        public async Task<QuestionListModel> GetQuestionByLevel(string level)
+        public async Task<QuestionListModel> GetQuestionByLevel(string level, string questionId)
         {
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _accessor.HttpContext.Session.GetString("token"));
             var userId = _accessor.HttpContext.Session.GetString("id");
 
-            var responseMessage = await _httpClient.GetAsync($"quizQuestion?level={level}&userId={userId}");
+            var responseMessage = await _httpClient.GetAsync($"quizQuestion?level={level}&userId={userId}&questionId={questionId}");
 
             if (responseMessage.IsSuccessStatusCode)
             {
@@ -100,8 +100,16 @@ namespace NativeTurkish.Web.ApiServices.Concrete
             {
                 return null;
             }
+        }
 
+        public async Task TrueAnswer(string questionId, string userId)
+        {
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _accessor.HttpContext.Session.GetString("token"));
+            var answer = new { questionId, userId };
+            var json = JsonConvert.SerializeObject(answer);
+            StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
 
+            var responseMessage = await _httpClient.PostAsync("answer", content);
 
         }
     }

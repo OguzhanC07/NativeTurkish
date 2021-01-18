@@ -1,14 +1,31 @@
-﻿<div class="firstcontainer flex-center flex-column">
+﻿@model LevelModel
+
+
+<div class="firstcontainer flex-center flex-column">
     <h1>Türkçe Quiz</h1>
     <p class="explanation">Lütfen türkçe seviyenizi seçiniz , seviyenize uygun test başlatılacaktır.</p>
     <div id="home" class="flex-center flex-column">
-        <select class="btn" id="selectoptions" name="cars">
-            <option value="A1">A1</option>
-            <option value="A2">A2</option>
-            <option value="B1">B1</option>
-            <option value="B2">B2</option>
-        </select>
-        <a>Başla</a>
-
+        <form method="post" asp-action="GetLevel" asp-controller="Question">
+            <select class="btn" required id="levels" onchange="GetSelectedTextValue(this)">
+                <option value="0">Lütfen Seviye Seçiniz</option>
+                <option value="A1">A1</option>
+                <option value="A2">A2</option>
+                <option value="B1">B1</option>
+                <option value="B2">B2</option>
+            </select>
+            <input type="hidden" asp-for="@Model.Level" />
+            <div class="form-group">
+                <button type="submit" class="btn btn-sm btn-info">Kaydet</button>
+            </div>
+        </form>
     </div>
 </div>
+
+@section Javascript{
+    <script>
+        function GetSelectedTextValue(sel) {
+            var value = sel.options[sel.selectedIndex].text;
+            document.getElementById('Level').value = value;
+        }
+    </script>
+}
